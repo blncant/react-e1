@@ -1,25 +1,67 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [newInput, setNewInput] = useState("");
+	const [items, setItems] = useState([]);
+
+	const formSubmit = (e) => {
+		e.preventDefault();
+	};
+
+	function addItem() {
+		if (!newInput) {
+			alert("Agregar una tarea");
+			return;
+		}
+
+		const item = {
+			value: newInput,
+		};
+
+		setItems([...items, item]);
+		setNewInput("");
+	}
+
+	const deleteAll = () => {
+		setItems([]);
+	};
+
+	return (
+		<div className="App">
+			<>
+				<h1>To-Do List</h1>
+				<h3>Añadir tareas</h3>
+
+				<form onSubmit={formSubmit}>
+					<input
+						type="text"
+						placeholder="Escribir aqui..."
+						value={newInput}
+						onChange={(e) => setNewInput(e.target.value)}
+					/>
+
+					<button title="Agregar" onClick={() => addItem()}>
+						+
+					</button>
+
+					<button title="Borrar" onClick={() => deleteAll()}>
+						🗑️
+					</button>
+
+					<div className="list">
+						{items.map((item) => {
+							return (
+								<div>
+									<h3>{item.value}</h3>
+								</div>
+							);
+						})}
+					</div>
+				</form>
+			</>
+		</div>
+	);
 }
 
 export default App;
