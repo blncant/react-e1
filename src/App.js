@@ -1,65 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import "./App.css";
 
+import ToDo from "./components/ToDo/ToDo";
+import Layout from "./components/Layout/Layout";
+import GlobalStyles from "./styles/GlobalStyles";
+
 function App() {
-	const [newInput, setNewInput] = useState("");
-	const [items, setItems] = useState([]);
-
-	const formSubmit = (e) => {
-		e.preventDefault();
-	};
-
-	function addItem() {
-		if (!newInput) {
-			alert("Agregar una tarea");
-			return;
-		}
-
-		const item = {
-			value: newInput,
-		};
-
-		setItems([...items, item]);
-		setNewInput("");
-	}
-
-	const deleteAll = () => {
-		setItems([]);
-	};
-
 	return (
 		<div className="App">
-			<>
+			<Layout>
 				<h1>To-Do List</h1>
 				<h3>Añadir tareas</h3>
+				<ToDo />
+			</Layout>
 
-				<form onSubmit={formSubmit}>
-					<input
-						type="text"
-						placeholder="Escribir aqui..."
-						value={newInput}
-						onChange={(e) => setNewInput(e.target.value)}
-					/>
-
-					<button title="Agregar" onClick={() => addItem()}>
-						+
-					</button>
-
-					<button title="Borrar" onClick={() => deleteAll()}>
-						🗑️
-					</button>
-
-					<div className="list">
-						{items.map((item) => {
-							return (
-								<div>
-									<h3>{item.value}</h3>
-								</div>
-							);
-						})}
-					</div>
-				</form>
-			</>
+			<GlobalStyles />
 		</div>
 	);
 }
