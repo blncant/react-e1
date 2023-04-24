@@ -1,21 +1,15 @@
-import React from "react";
-import "./App.css";
-
-import ToDo from "./components/ToDo/ToDo";
-import Layout from "./components/Layout/Layout";
+import Layout from "./components/layout/Layout";
 import GlobalStyles from "./styles/GlobalStyles";
+import Routes from "./routes/Routes";
 
 function App() {
 	return (
-		<div className="App">
+		<>
 			<Layout>
-				<h1>To-Do List</h1>
-				<h3>Añadir tareas</h3>
-				<ToDo />
+				<Routes />
 			</Layout>
-
 			<GlobalStyles />
-		</div>
+		</>
 	);
 }
 

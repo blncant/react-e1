@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { BtnAdd, BtnDelete, Input, Container} from "./ToDoStyles"
 
 function ToDo() {
     const [newInput, setNewInput] = useState("");
@@ -27,22 +28,24 @@ function ToDo() {
 	};
 
   return (
-    <div>
+    <Container>
+        <h1>To-Do List</h1>
+		<h3>Añadir tareas</h3>
         <form onSubmit={formSubmit}>
-					<input
+					<Input
 						type="text"
 						placeholder="Escribir aqui..."
 						value={newInput}
 						onChange={(e) => setNewInput(e.target.value)}
 					/>
 
-					<button title="Agregar" onClick={() => addItem()}>
+					<BtnAdd title="Agregar" onClick={() => addItem()}>
 						+
-					</button>
+					</BtnAdd>
 
-					<button title="Borrar" onClick={() => deleteAll()}>
+					<BtnDelete title="Borrar" onClick={() => deleteAll()}>
 						🗑️
-					</button>
+					</BtnDelete>
 
 					<div className="list">
 						{items.map((item) => {
@@ -54,7 +57,7 @@ function ToDo() {
 						})}
 					</div>
 				</form>
-    </div>
+    </Container>
   )
 }
 
