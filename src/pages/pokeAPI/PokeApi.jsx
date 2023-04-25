@@ -1,20 +1,30 @@
 import React from 'react'
+import styled from "styled-components";
+
+export const Contenedor = styled.div`
+	display: flex;
+    flex-direction: column;
+	align-items: center;
+	padding: 5rem;
+    gap: 10px;
+`;
 
 function PokeApi() {
   return (
-    <div>
-            <h3>Buscar un Pokemon</h3>
-    <form>
+    <Contenedor>
+            <h3>PAGINA EN CONSTRUCCION</h3>
+            <h3>(PROXIMAMENTE)</h3>
+            <form>
                 <input
                     type="text"
-                    placeholder="Escribir aqui..."
+                    placeholder="Pikachu..."
                 />
 
-                <button title="Agregar">
-                    +
+                <button title="Buscar">
+                    Buscar
                 </button>
             </form>
-</div>
+    </Contenedor>
   )
 }
 

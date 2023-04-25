@@ -1,34 +1,25 @@
 import React, { useState } from "react";
-import { BtnAdd, BtnDelete, Input, Container} from "./ToDoStyles"
+import { BtnAdd, BtnDelete, Input, Container, Inputs} from "./ToDoStyles"
+import { useToDoContext } from "../../context/ToDoProvider";
 
 function ToDo() {
+    const {items, addItem, deleteAll} = useToDoContext();
+
     const [newInput, setNewInput] = useState("");
-	const [items, setItems] = useState([]);
 
 	const formSubmit = (e) => {
 		e.preventDefault();
-	};
-
-	function addItem() {
-		if (!newInput) {
+        if (!newInput) {
 			alert("Agregar una tarea");
 			return;
 		}
-
-		const item = {
-			value: newInput,
-		};
-
-		setItems([...items, item]);
-		setNewInput("");
-	}
-
-	const deleteAll = () => {
-		setItems([]);
+        addItem(newInput);
+        setNewInput("");
 	};
 
   return (
-    <Container>
+    
+        <Container>
         <h1>To-Do List</h1>
 		<h3>Añadir tareas</h3>
         <form onSubmit={formSubmit}>
@@ -42,22 +33,17 @@ function ToDo() {
 					<BtnAdd title="Agregar" onClick={() => addItem()}>
 						+
 					</BtnAdd>
+		</form>
+        
 
-					<BtnDelete title="Borrar" onClick={() => deleteAll()}>
-						🗑️
-					</BtnDelete>
+		<Inputs>
+			{items.map((item) => 
+                (<li>{item}</li>)
+            )}
+		</Inputs>
+        <BtnDelete title="Borrar" onClick={() => deleteAll()}> 🗑️ ELIMINAR TODO</BtnDelete>
+        </Container>
 
-					<div className="list">
-						{items.map((item) => {
-							return (
-								<div>
-									<h3>{item.value}</h3>
-								</div>
-							);
-						})}
-					</div>
-				</form>
-    </Container>
   )
 }
 

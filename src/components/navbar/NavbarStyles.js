@@ -28,3 +28,7 @@ export const NavLink = styled(Link)`
 		color: yellow;
 	}
 `;
+
+export const ToDoNav = styled.li`
+	background: ${(props) => (props.empty ? "" : "green")};
+`;
