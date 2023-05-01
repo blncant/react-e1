@@ -1,11 +1,12 @@
-import { Nav, Menu, NavLink, ToDoNav } from "./NavbarStyles"
-import { useToDoContext } from "../../context/ToDoProvider";
+import { useSelector } from "react-redux";
+import { Nav, Menu, NavLink, ToDoNav} from "./NavbarStyles"
+// import { useToDoContext } from "../../context/ToDoProvider";
 
 
 const Navbar = () => {
    
-    const {items} = useToDoContext();
-    const isTodoListEmpty = items.length ===0;
+    const todos = useSelector((state) => state.todo);
+    const isTodoListEmpty = todos.length ===0;
 
 
   return (
@@ -16,7 +17,7 @@ const Navbar = () => {
                     <NavLink to="/">Home</NavLink>
                 </li>
                 <ToDoNav empty={isTodoListEmpty}>
-                    <NavLink to="/ToDo">ToDo</NavLink>
+                    <NavLink to="/src/redux/ToDoList">ToDo</NavLink>
                 </ToDoNav>
                 <li>
                     <NavLink to="/PokeApi">PokeSearch</NavLink>

@@ -2,15 +2,17 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
-import { ToDoProvider } from "./context/ToDoProvider";
+
+import { Provider } from "react-redux";
+import GlobalStyles from "./styles/GlobalStyles";
+import { store } from "./redux/store";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-	<>
+	<Provider store={store}>
+		<GlobalStyles />
 		<BrowserRouter>
-			<ToDoProvider>
-				<App />
-			</ToDoProvider>
+			<App />
 		</BrowserRouter>
-	</>
+	</Provider>
 );
